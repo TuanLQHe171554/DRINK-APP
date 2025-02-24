@@ -8,9 +8,9 @@ import { Tips } from '../../components/Drinks/Tips';  // Mẹo về cà phê, n�
 
 // Các cảnh đổi tên phù hợp với bán nước
 const renderScene = SceneMap({
-  first: Drinks,  // Hiển thị các loại nước, cà phê
-  second: CoffeeTutorial,  // Video pha chế, giới thiệu thức uống
-  third: Tips,  // Mẹo về cà phê, trà, nước ép, v.v.
+  first: Drinks,
+  second: CoffeeTutorial,
+  third: Tips,
 });
 
 // Các tab được cập nhật cho quán cà phê
