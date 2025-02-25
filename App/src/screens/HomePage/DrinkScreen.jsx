@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { SearchScreen } from '../../components/Beverages/SearchScreen';  // Adjusted to beverages
+import { SearchScreen } from '../../components/Drink/SearchScreen'; 
 import ProductCard from '../../components/ProductCard';
 import { fetchAllProductsAPIs } from '../../apis';
 
