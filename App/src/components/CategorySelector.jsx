@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 
-const categories = ['All', 'Cà phê', 'Trà', 'Nước ép', 'Sinh tố']; // Các danh mục mới cho quán cà phê
+const categories = ['Tất cả', 'Cà phê', 'Trà', 'Nước ép', 'Sinh tố']; // Đổi "All" thành "Tất cả" cho đúng tiếng Việt
 
 export default function CategorySelector() {
   return (
@@ -11,7 +11,11 @@ export default function CategorySelector() {
       style={styles.container}
     >
       {categories.map((category, index) => (
-        <TouchableOpacity key={index} style={styles.categoryButton}>
+        <TouchableOpacity
+          key={index}
+          style={styles.categoryButton}
+          activeOpacity={0.7} // Hiệu ứng nhấn nhẹ
+        >
           <Text style={styles.categoryText}>{category}</Text>
         </TouchableOpacity>
       ))}
@@ -22,17 +26,23 @@ export default function CategorySelector() {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 20,
-    marginBottom: 10,
+    marginVertical: 10, // Thêm margin dọc cho thoáng
   },
   categoryButton: {
-    backgroundColor: '#F36C24', // Màu sắc có thể thay đổi tùy theo yêu cầu
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    marginRight: 10,
+    backgroundColor: '#E07C4A', // Nâu cam nhẹ, gợi vibe cà phê sữa
+    borderRadius: 25, // Bo góc tròn hơn cho mềm mại
+    paddingHorizontal: 18, // Tăng padding ngang cho rộng rãi
+    paddingVertical: 8, // Padding dọc nhẹ nhàng
+    marginRight: 12, // Giãn cách giữa các nút
+    shadowColor: '#000',
+    shadowOpacity: 0.1, // Bóng đổ nhẹ
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2, // Cho Android
   },
   categoryText: {
-    color: '#fff',
-    fontSize: 14,
+    color: '#FFF', // Chữ trắng nổi trên nền nâu cam
+    fontSize: 15, // Tăng nhẹ cỡ chữ cho dễ đọc
+    fontWeight: '500', // Chữ đậm vừa đủ, thanh thoát
   },
 });

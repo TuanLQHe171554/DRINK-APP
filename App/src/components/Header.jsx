@@ -2,61 +2,91 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, ImageBackground } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const image = { uri: 'https://gamek.mediacdn.vn/133514250583805952/2024/9/24/yasuo-skin-1-1727148942603165090057.jpg' }; // Giữ nguyên link ảnh của bạn
+const profileImage = { uri: 'https://gamek.mediacdn.vn/133514250583805952/2024/9/24/yasuo-skin-1-1727148942603165090057.jpg' };
 
 export default function Header() {
   return (
-    <View style={styles.container}>
-      <View style={styles.headerTop}>
-        <View style={{ flexDirection: 'row', gap: 10 }}>
-          <Image
-            source={{ uri: 'https://gamek.mediacdn.vn/133514250583805952/2024/9/24/yasuo-skin-1-1727148942603165090057.jpg' }}
-            style={styles.profileImage}
-          />
-          <Text style={styles.greeting}>Hello, Coffee Lover!</Text>
+    <ImageBackground
+      source={profileImage}
+      style={styles.container}
+      imageStyle={styles.backgroundImage}
+    >
+      <View style={styles.overlay}>
+        <View style={styles.headerTop}>
+          <View style={styles.profileContainer}>
+            <Image
+              source={profileImage}
+              style={styles.profileImage}
+            />
+            <Text style={styles.greeting}>Chào, Dân Nghiện Nước!</Text>
+          </View>
+          <MaterialCommunityIcons name="bell" size={28} color="#F4D03F" />
         </View>
-
-        <MaterialCommunityIcons name="bell" size={24} color="#fff" />
+        <View style={styles.textContent}>
+          <Text style={styles.tagline}>
+            Pha chế chuẩn gu, đậm vị{' '}
+            <Text style={styles.highlight}>Việt</Text>!
+          </Text>
+        </View>
       </View>
-      <View style={styles.textContent}>
-        <Text style={styles.tagline}>Brewing the perfect cup of coffee, one <Text style={styles.highlight}>sip</Text> at a time.</Text>
-      </View>
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    height: 240,
+    borderBottomLeftRadius: 25,
+    borderBottomRightRadius: 25,
+    overflow: 'hidden',
+  },
+  backgroundImage: {
+    opacity: 0.15, // Mờ nền để nội dung rõ hơn
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(74, 44, 42, 0.9)', // Nâu cà phê đậm, hơi trong
     padding: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    height: 250,
-    backgroundColor: '#EAB543'
   },
   headerTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  profileContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 15,
+  },
   profileImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    borderWidth: 2,
+    borderColor: '#F4D03F', // Viền vàng nhạt
   },
   greeting: {
-    color: '#fff',
-    fontSize: 18,
-    marginTop: 10,
+    color: '#FFF',
+    fontSize: 20,
+    fontWeight: '600',
+    textShadowColor: 'rgba(0, 0, 0, 0.4)',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 3,
   },
   tagline: {
-    color: '#fff',
+    color: '#FFF',
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: '700',
+    textAlign: 'center',
+    lineHeight: 30,
+    marginTop: 15,
   },
   highlight: {
-    color: '#FFD700',
+    color: '#F4D03F',
+    fontWeight: '800',
   },
   textContent: {
-    alignItems: 'center'
-  }
+    flex: 1,
+    justifyContent: 'center',
+  },
 });

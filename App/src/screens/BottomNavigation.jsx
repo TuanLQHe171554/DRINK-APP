@@ -3,8 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import HomeScreen from '../screens/HomePage/HomeScreen';
-import { FoodScreen } from '../screens/HomePage/DrinkScreen';
-import { KitchenScreen } from '../screens/HomePage/Drinks';
+import { DrinkScreen } from '../screens/HomePage/DrinkScreen';
+import { CafeScreen } from '../screens/HomePage/Drinks';
 import { CartScreen } from '../screens/HomePage/CartScreen';
 import { ProfileScreen } from './HomePage/ProfileScreen';
 
@@ -34,7 +34,7 @@ const BottomNavigation = ({ navigation }) => {
 
       <Tab.Screen
         name="Menu"
-        component={FoodScreen}
+        component={DrinkScreen}
         options={{
           tabBarLabel: 'Menu',
           tabBarIcon: ({ color }) => (
@@ -45,7 +45,7 @@ const BottomNavigation = ({ navigation }) => {
 
       <Tab.Screen
         name="Barista"
-        component={KitchenScreen}
+        component={CafeScreen}
         options={{
           tabBarLabel: 'Barista',
           tabBarIcon: ({ color }) => (
