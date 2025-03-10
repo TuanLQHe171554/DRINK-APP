@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
 import CategorySelector from '../../components/CategorySelector';
 import ProductList from '../../components/ProductList';
+import { fetchAllProductsAPIs, fetchAllCategoriesAPIs } from '../../apis';
 
 export default function HomeScreen() {
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    fetchAllProductsAPIs().then(res => setProducts(res));
+    fetchAllCategoriesAPIs().then(res => setCategories(res));
+  }, []);
   return (
     <ScrollView
       style={styles.container}

@@ -1,5 +1,7 @@
 import axios from "axios";
-import { toast } from 'react-toastify';
+import { logoutUserAPI } from "../redux/user/userSlice";
+import { refreshTokenAPI } from "../apis";
+import Toast from "react-native-toast-message";
 // import { interceptorLoadingElements } from "./fomatter";
 // import { logoutUserAPI } from "~/redux/user/userSlice";
 // import { refreshTokenAPI } from "~/apis";
@@ -46,50 +48,46 @@ instance.interceptors.response.use(function (response) {
 
     // interceptorLoadingElements(false)
 
-    // //handle error refresh token
-    // if (error?.response?.status === 401) {
-    //     //
-    //     axiosRuduxStore.dispatch(logoutUserAPI(false))
-    // }
+    //handle error refresh token
+    if (error?.response?.status === 401) {
+        //
+        axiosRuduxStore.dispatch(logoutUserAPI(false))
+    }
 
-    // if (error?.response?.status === 404) {
-    //     //
-    //     axiosRuduxStore.dispatch(reloadBoard())
-    // }
-    // const originalRequest = error.config;
-    // console.log('originalRequest:', originalRequest);
+    const originalRequest = error.config;
+    console.log('originalRequest:', originalRequest);
 
 
-    // if (error?.response?.status === 410 && !originalRequest._retry) {
-    //     originalRequest._retry = true;
-    //     if (!refreshTokenPromise) {
-    //         refreshTokenPromise = refreshTokenAPI()
-    //             .then(data => {
-    //                 return data?.accessToken
-    //             })
-    //             .catch((error) => {
-    //                 //if have any error from API refresh token , we will logout
-    //                 axiosRuduxStore.dispatch(logoutUserAPI(false))
-    //                 return Promise.reject(error)
-    //             })
-    //             .finally(() => {
-    //                 refreshTokenPromise = null
-    //             })
-    //     }
+    if (error?.response?.status === 410 && !originalRequest._retry) {
+        originalRequest._retry = true;
+        if (!refreshTokenPromise) {
+            refreshTokenPromise = refreshTokenAPI()
+                .then(data => {
+                    return data?.accessToken
+                })
+                .catch((error) => {
+                    //if have any error from API refresh token , we will logout
+                    axiosRuduxStore.dispatch(logoutUserAPI(false))
+                    return Promise.reject(error)
+                })
+                .finally(() => {
+                    refreshTokenPromise = null
+                })
+        }
 
-    //     //return refresh token run successfully
-    //     // eslint-disable-next-line no-unused-vars
-    //     return refreshTokenPromise.then((accessToken) => {
-    //         /* Handle save new access token but we save in cookie  and if save local storage such as:
-    //         instance..defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;*/
+        //return refresh token run successfully
+        // eslint-disable-next-line no-unused-vars
+        return refreshTokenPromise.then((accessToken) => {
+            /* Handle save new access token but we save in cookie  and if save local storage such as:
+            instance..defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;*/
 
-    //         //handle call error api again with new access token
-    //         return instance(originalRequest)
-    //     })
-    // }
-    // else {
-    //     toast.error(error?.response?.data?.message)
-    // }
+            //handle call error api again with new access token
+            return instance(originalRequest)
+        })
+    }
+    else {
+        Toast.error(error?.response?.data?.message)
+    }
 
     return Promise.reject(error);
 });

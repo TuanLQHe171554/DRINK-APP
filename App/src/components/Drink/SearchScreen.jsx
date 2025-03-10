@@ -10,7 +10,7 @@ const DATA = [
   { id: '2', name: 'Trà Xanh', price: '$2.50', image: 'https://image.tienphong.vn/w890/Uploaded/2025/rwbvhvobvvimsb/2021_12_16/uong-tra-xanh-moi-ngay-co-tot-khong-665x400-8524.jpg' },
   { id: '3', name: 'Sinh Tố Dứa', price: '$4.99', image: 'https://cdn.tgdd.vn/Files/2019/06/10/1172354/cach-lam-sinh-to-dua-ngon-ngat-ngay-uong-la-len-may-202201190929516504.jpg' },
   { id: '4', name: 'Nước Ép Cam', price: '$5.99', image: 'https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/2/19/cach-lam-nuoc-cam-ep-ngon-va-thom-ket-hop-voi-le-va-gung-5-1645248090817401855254.jpg' },
-  { id: '5', name: 'Cà Phê Đen', price: '$2.99', image: 'https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/bai_vietca_phe_den_bao_nhieu_calo_uong_nhieu_co_tot_khong_html_1_ebb28c9c42.png' }
+  { id: '5', name: 'Cà Phê Đen', price: '$2.99', image: 'https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/bai_vietca_phe_den_bao_nhieu_calo_uong_nhieu_co_tot_khong_html_1_ebb28c9c42.png9' }
 ];
 
 const Stack = createNativeStackNavigator();
