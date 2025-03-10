@@ -10,13 +10,12 @@ export default function CategorySelector() {
       showsHorizontalScrollIndicator={false}
       style={styles.container}
     >
+      <TouchableOpacity style={styles.categoryButton}>
+        <Text style={styles.categoryText}>All</Text>
+      </TouchableOpacity>
       {categories.map((category, index) => (
-        <TouchableOpacity
-          key={index}
-          style={styles.categoryButton}
-          activeOpacity={0.7} // Hiệu ứng nhấn nhẹ
-        >
-          <Text style={styles.categoryText}>{category}</Text>
+        <TouchableOpacity key={index} style={styles.categoryButton}>
+          <Text style={styles.categoryText}>{category?.name}</Text>
         </TouchableOpacity>
       ))}
     </ScrollView>

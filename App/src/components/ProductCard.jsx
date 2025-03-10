@@ -1,14 +1,13 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
-const ProductCard = ({ product, onAddToCart }) => {
+const ProductCard = ({ product }) => {
+  const navigater = useNavigation();
   return (
-    <View style={styles.card}>
-      <Image
-        source={{ uri: product.image || 'https://via.placeholder.com/150' }} // Placeholder nếu không có ảnh
-        style={styles.image}
-      />
+    <View style={styles.card} onClick={() => navigater.navigate("ProductDetail", { product })}>
+      <Image source={product.image} style={styles.image} />
       <Text style={styles.name}>{product.name}</Text>
       <Text style={styles.size}>{product.size || "M"}, Giá</Text>
       <View style={styles.footer}>
